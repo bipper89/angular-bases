@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-6">
+    <img class="main-logo" [src]="imgUrl" alt="logo">
+  </div>
+  <div class="col-md-6">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="d-flex flex-column gap-4">
+      <h1>Agregar usuario</h1>
+      <div>
+        <label for="name">Nombre</label>
+        <input class="form-control" formControlName="name" type="text" id="name" name="name">
+      </div>
+      <div>
+        <label for="brand">Rama</label>
+        <select formControlName="brand" class="form-control" id="brand" name="brand">
+          <option disabled selected>Select one</option>
+          <option value="animations">Animation</option>
+          <option value="cdk">Component Developer Kit</option>
+          <option value="cli">Command Line Interface</option>
+          <option value="compiler">Compiler</option>
+          <option value="components">Web Components</option>
+          <option value="forms">Forms</option>
+          <option value="http">HTTP</option>
+          <option value="i18n">Internationalization</option>
+          <option value="karma">Karma</option>
+          <option value="labs">Angular Labs</option>
+          <option value="language-services">Language Service</option>
+          <option value="material">Angular Material</option>
+          <option value="pwa">Progresive Web Apps</option>
+          <option value="router">Router</option>
+          <option value="universal">Angular Universal</option>
+        </select>
+      </div>
+      <div class="d-flex justify-content-between buttons">
+        <button *ngIf="user() === undefined" class="btn btn-primary me-2" [disabled]="userForm.invalid" type="submit">Agregar</button>
+        <button *ngIf="user() !== undefined" class="btn btn-warning me-2" [disabled]="userForm.invalid" type="button" (click)="onEdit()">Editar</button>
+        <button class="btn btn-secondary ms-2" type="button" (click)="userForm.reset()">Reset</button>
+      </div>
+    </form>
+  </div>
+</div>
+

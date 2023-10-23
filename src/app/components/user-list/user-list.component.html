@@ -1,0 +1,29 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">Brand</th>
+    <th scope="col">Logo</th>
+    <th scope="col">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngIf="users().length > 0; else noUsers">
+    <tr *ngFor="let user of users(); let i = index">
+      <th scope="row">{{i + 1}}</th>
+      <td>{{user.name}}</td>
+      <td>{{user.brand}}</td>
+      <td><img class="table-logo" [src]="'assets/logos/' + user.brand + '.svg'" alt="user-image"></td>
+      <td class="d-flex justify-content-evenly">
+        <button type="button" class="btn btn-warning" (click)="onSelect(i)">Edit</button>
+        <button type="button" class="btn btn-danger" (click)="onDelete(i, user)">Delete</button>
+      </td>
+    </tr>
+  </ng-container>
+  <ng-template #noUsers>
+    <tr>
+      <td colspan="5" class="text-center">No users</td>
+    </tr>
+  </ng-template>
+</table>
